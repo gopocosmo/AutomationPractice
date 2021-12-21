@@ -1,5 +1,6 @@
 package Tests;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -26,6 +27,11 @@ public class RegisterTest {
         //gasim "skip sign in element"
         WebElement skipSignInElement = driver.findElement(By.id("btn2"));
         skipSignInElement.click();
+
+        //validare pagina de "Register"
+        String actualRegister = driver.getTitle();
+        Assert.assertEquals("Regi2ster",actualRegister);
+
 
         WebElement firstNameElement = driver.findElement(By.cssSelector("input[placeholder='First Name']"));
         String firstNameElementvaloare = "Augustin";
@@ -63,7 +69,10 @@ public class RegisterTest {
         String adresaElementValoare = "Cluj nr 23";
         adresaElement.sendKeys(adresaElementValoare);
 
-
+        //parola
+        WebElement parolaElement = driver.findElement(By.id("firstpassword"));
+        String parolaElementValoare = "parola123";
+        parolaElement.sendKeys(parolaElementValoare);
 
 
 
