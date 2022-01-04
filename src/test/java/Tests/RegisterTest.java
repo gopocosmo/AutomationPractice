@@ -1,29 +1,22 @@
 package Tests;
 
-
+import Base.SharedData;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
-public class RegisterTest {
-    public WebDriver driver;
+public class RegisterTest extends SharedData {
 
     @Test
     public void testAutomat() {
-        //specificam unde se afla driverul pt browser
-        System.setProperty("webdriver.chrome.driver", "C:\\Automation\\chromedriver.exe");
-        //deschidem un browser
-        driver = new ChromeDriver();
-        //introducem o adresa web
-        driver.get("http://demo.automationtesting.in/Index.html");
-        //schimbam rezolutia in full-screen sau maximize
-        driver.manage().window().maximize();
 
         //gasim "skip sign in element"
         WebElement skipSignInElement = driver.findElement(By.id("btn2"));
@@ -75,15 +68,7 @@ public class RegisterTest {
         hobbyElement.click();
 
         //language
-        WebElement languageElement = driver.findElement(By.id("msdd"));
-        languageElement.click();
 
-        List<WebElement> languageElements = driver.findElements(By.xpath("//li[@class='ng-scope']/a"));
-        for (Integer i = 0;i < languageElements.size();i++){
-            if (languageElements.get(i).getText().equals("Bulgarian")){
-                languageElements.get(i).click();
-            }
-        }
 
         //clic altundeva pe pagina pt a inchide dropdownul de la language
         genderElement.click();
@@ -92,6 +77,8 @@ public class RegisterTest {
         WebElement skillsElement = driver.findElement(By.id("Skills"));
         Select skillSelect = new Select(skillsElement);
         skillSelect.selectByVisibleText("Android");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,500)");
 
 
 
@@ -132,6 +119,17 @@ public class RegisterTest {
         String confirmareParolaElementValoare = "parola123";
         confirmareParolaElement.sendKeys(confirmareParolaElementValoare);
 
+        WebElement languageElement = driver.findElement(By.id("msdd"));
+        languageElement.click();
+
+        List<WebElement> languageElements = driver.findElements(By.xpath("//li[@class='ng-scope']/a"));
+        for (Integer i = 0;i < languageElements.size();i++){
+            if (languageElements.get(i).getText().equals("Bulgarian")){
+                languageElements.get(i).click();
+                break;
+            }
+        }
+
         //click "submit"
         WebElement submitElement = driver.findElement(By.id("submitbtn"));
         submitElement.click();
@@ -141,13 +139,7 @@ public class RegisterTest {
         //comparam url-ul curent cu url-ul paginii de register, daca nu s-a schimbat nu a trecut testul
         String actualRegisterDoi = driver.getTitle();
         String urlPagina = "http://demo.automationtesting.in/Register.html";
-        Assert.assertEquals("Testul NU a functionat",actualRegisterDoi,urlPagina);
-
-
-
-
-        //ceva
-
+        Assert.assertTrue("Testul NU a functionat",urlPagina.contains("Register"));
 
     }
 }

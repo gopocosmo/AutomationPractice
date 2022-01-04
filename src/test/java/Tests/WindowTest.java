@@ -1,5 +1,6 @@
 package Tests;
 
+import Base.SharedData;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,20 +11,11 @@ import org.openqa.selenium.interactions.Actions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WindowTest {
-
-    public WebDriver driver;
+public class WindowTest extends SharedData {
 
     @Test
     public void testAutomat() {
-        //specificam unde se afla driverul pt browser
-        System.setProperty("webdriver.chrome.driver", "C:\\Automation\\chromedriver.exe");
-        //deschidem un browser
-        driver = new ChromeDriver();
-        //introducem o adresa web
-        driver.get("http://demo.automationtesting.in/Index.html");
-        //schimbam rezolutia in full-screen sau maximize
-        driver.manage().window().maximize();
+
 
         //gasim "skip sign in element"
         WebElement skipSignInElement = driver.findElement(By.id("btn2"));
@@ -76,8 +68,6 @@ public class WindowTest {
         driver.switchTo().window(multipleTabs.get(1));
         driver.close();
         driver.switchTo().window(multipleTabs.get(0));
-        driver.quit();
-
 
     }
 }
