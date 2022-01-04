@@ -54,7 +54,7 @@ public class RegisterTest {
         imageElement.sendKeys("C:\\Users\\Gopo\\Pictures\\1.jpg");
 
 
-        /*
+
 
         //email
         WebElement emailElement = driver.findElement(By.cssSelector("input[type='email']"));
@@ -98,7 +98,7 @@ public class RegisterTest {
         //country
         WebElement countryElement = driver.findElement(By.cssSelector("span[aria-labelledby='select2-country-container']"));
         countryElement.click();
-
+/*
         //parcurgem lista de tari si selectam tara dorita
         List<WebElement> countryElements = driver.findElements(By.xpath("//*[@id='country']/option"));
         for (Integer i = 0;i < countryElements.size();i++){
@@ -106,7 +106,7 @@ public class RegisterTest {
                 countryElements.get(i).click();
             }
         }
-
+*/
         //anul
         WebElement yearElement = driver.findElement(By.id("yearbox"));
         Select yearSelect = new Select(yearElement);
@@ -144,7 +144,7 @@ public class RegisterTest {
         Assert.assertEquals("Testul NU a functionat",actualRegisterDoi,urlPagina);
 
 
-         */
+
 
         //ceva
 
