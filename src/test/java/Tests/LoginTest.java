@@ -1,43 +1,20 @@
 package Tests;
 
 import Base.SharedData;
-import Help.ElementMethods;
-import org.junit.Assert;
+import Pages.IndexPage;
+import Pages.LoginPage;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginTest extends SharedData {
-    public ElementMethods elementMethods;
-
+    public IndexPage indexPage;
+    public LoginPage loginPage;
 
     @Test
     public void testAutomat(){
-        elementMethods = new ElementMethods(driver);
+        indexPage = new IndexPage(driver);
+        loginPage = new LoginPage(driver);
 
-        //identificam elementul "sign in"
-        WebElement signInElement = driver.findElement(By.id("btn1"));
-        //facem un click
-        elementMethods.clickElement(signInElement);
-
-        //identificare element dupa "locaters" : id, class, name, link, css, xpath
-
-        WebElement emailElement = driver.findElement(By.cssSelector("input[placeholder='E mail']"));
-        String emailValue = "ceva@ceva.com";
-        elementMethods.fillElement(emailElement,emailValue);
-
-        WebElement parolaElement = driver.findElement(By.xpath("//input[@placeholder='Password']"));
-        String parolaValue = "parolaInspargibila";
-        parolaElement.sendKeys(parolaValue);
-        WebElement enterElement = driver.findElement(By.id("enterbtn"));
-        enterElement.click();
-
-        WebElement eroareElement = driver.findElement(By.id("errormsg"));
-        String expectedError = "Invalid User Name or PassWord";
-        elementMethods.validateElementMessage(eroareElement, expectedError);
-
+        indexPage.clickSignIn();
+        loginPage.InvalidLogin("alex","dorha","Invalid User Name or PassWord");
     }
-
 }
