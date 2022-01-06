@@ -1,6 +1,7 @@
 package Tests;
 
 import Base.SharedData;
+import Help.ElementMethods;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,14 +13,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WindowTest extends SharedData {
+    public ElementMethods elementMethods;
+
 
     @Test
     public void testAutomat() {
+        elementMethods = new ElementMethods(driver);
 
 
         //gasim "skip sign in element"
         WebElement skipSignInElement = driver.findElement(By.id("btn2"));
-        skipSignInElement.click();
+        elementMethods.clickElement(skipSignInElement);
 
         //interactionam cu tabul "switch to"
         WebElement switchToElement = driver.findElement(By.xpath("//a[contains(text(),'Switch')]"));
@@ -28,7 +32,8 @@ public class WindowTest extends SharedData {
 
         //identificam "Windows"
         WebElement windowsElement = driver.findElement(By.xpath("//a[contains(text(),'Windows')]"));
-        windowsElement.click();
+        elementMethods.clickElement(windowsElement);
+
         String url = "http://demo.automationtesting.in/Windows.html";
         driver.navigate().to(url);
         //driver.navigate().refresh();
@@ -36,7 +41,8 @@ public class WindowTest extends SharedData {
         List<WebElement> windowOptions = driver.findElements(By.cssSelector("ul[class='nav nav-tabs nav-stacked'] li a"));
         windowOptions.get(0).click();
         WebElement clickButonElement = driver.findElement(By.cssSelector("#Tabbed a button"));
-        clickButonElement.click();
+        elementMethods.clickElement(clickButonElement);
+
 
         System.out.println("titlul paginii" + driver.getTitle());
 
@@ -51,7 +57,8 @@ public class WindowTest extends SharedData {
 
         windowOptions.get(1).click();
         WebElement clickWindowElement = driver.findElement(By.cssSelector("#Seperate  button"));
-        clickWindowElement.click();
+        elementMethods.clickElement(clickWindowElement);
+
         List<String> windows = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(windows.get(1));
         System.out.println("titlul paginii" + driver.getTitle());
@@ -61,7 +68,8 @@ public class WindowTest extends SharedData {
 
         windowOptions.get(2).click();
         WebElement clickTabsElement = driver.findElement(By.cssSelector("#Multiple button"));
-        clickTabsElement.click();
+        elementMethods.clickElement(clickTabsElement);
+
         List<String> multipleTabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(multipleTabs.get(2));
         driver.close();

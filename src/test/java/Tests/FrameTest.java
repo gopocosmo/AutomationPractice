@@ -1,5 +1,7 @@
 package Tests;
 
+import Base.SharedData;
+import Help.ElementMethods;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,23 +11,16 @@ import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 
-public class FrameTest {
-    public WebDriver driver;
+public class FrameTest extends SharedData {
+    public ElementMethods elementMethods;
 
     @Test
     public void testAutomat() {
-        //specificam unde se afla driverul pt browser
-        System.setProperty("webdriver.chrome.driver", "C:\\Automation\\chromedriver.exe");
-        //deschidem un browser
-        driver = new ChromeDriver();
-        //introducem o adresa web
-        driver.get("http://demo.automationtesting.in/Index.html");
-        //schimbam rezolutia in full-screen sau maximize
-        driver.manage().window().maximize();
+        elementMethods = new ElementMethods(driver);
 
         //gasim "skip sign in element"
         WebElement skipSignInElement = driver.findElement(By.id("btn2"));
-        skipSignInElement.click();
+        elementMethods.clickElement(skipSignInElement);
 
         //interactionam cu tabul "switch to"
         WebElement switchToElement = driver.findElement(By.xpath("//a[contains(text(),'Switch')]"));
@@ -34,7 +29,7 @@ public class FrameTest {
 
         //identificam "Frames"
         WebElement frameElement = driver.findElement(By.xpath("//a[contains(text(),'Frames')]"));
-        frameElement.click();
+        elementMethods.clickElement(frameElement);
         String url = "http://demo.automationtesting.in/Frames.html";
         driver.navigate().to(url);
         //driver.navigate().refresh();

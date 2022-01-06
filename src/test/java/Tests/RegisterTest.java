@@ -1,6 +1,7 @@
 package Tests;
 
 import Base.SharedData;
+import Help.ElementMethods;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -14,13 +15,17 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
 public class RegisterTest extends SharedData {
+    public ElementMethods elementMethods;
+
 
     @Test
     public void testAutomat() {
+        elementMethods = new ElementMethods(driver);
+
 
         //gasim "skip sign in element"
         WebElement skipSignInElement = driver.findElement(By.id("btn2"));
-        skipSignInElement.click();
+        elementMethods.clickElement(skipSignInElement);
 
         //verificam daca suntem pe pagina care trebuie
         //validare pagina de "Register"
@@ -30,17 +35,18 @@ public class RegisterTest extends SharedData {
         //first name
         WebElement firstNameElement = driver.findElement(By.cssSelector("input[placeholder='First Name']"));
         String firstNameElementvaloare = "Augustin";
-        firstNameElement.sendKeys(firstNameElementvaloare);
+        elementMethods.fillElement(firstNameElement,firstNameElementvaloare);
 
         //last name
         WebElement lastNameElement = driver.findElement(By.cssSelector("input[placeholder='Last Name']"));
         String lastNameElementvaloare = "Patron";
-        lastNameElement.sendKeys(lastNameElementvaloare);
+        elementMethods.fillElement(lastNameElement,lastNameElementvaloare);
 
         //adresa
         WebElement adresaElement = driver.findElement(By.cssSelector("textarea[ng-model='Adress']"));
         String adresaElementValoare = "Cluj nr 23";
-        adresaElement.sendKeys(adresaElementValoare);
+        elementMethods.fillElement(adresaElement,adresaElementValoare);
+
 
         //incarcam o poza
         WebElement imageElement = driver.findElement(By.id("imagesrc"));
@@ -52,26 +58,28 @@ public class RegisterTest extends SharedData {
         //email
         WebElement emailElement = driver.findElement(By.cssSelector("input[type='email']"));
         String emailElementValoare = "ceva@ceva.com";
-        emailElement.sendKeys(emailElementValoare);
+        elementMethods.fillElement(emailElement,emailElementValoare);
+
 
         //telefon
         WebElement telElement = driver.findElement(By.cssSelector("input[type='tel']"));
         String telElementValoare = "0264212666";
-        telElement.sendKeys(telElementValoare);
+        elementMethods.fillElement(telElement,telElementValoare);
+
 
         //gender
         WebElement genderElement = driver.findElement(By.cssSelector("input[value='Male']"));
-        genderElement.click();
+        elementMethods.clickElement(genderElement);
 
         //hobby
         WebElement hobbyElement = driver.findElement(By.id("checkbox3"));
-        hobbyElement.click();
+        elementMethods.clickElement(hobbyElement);
 
         //language
 
 
         //clic altundeva pe pagina pt a inchide dropdownul de la language
-        genderElement.click();
+        elementMethods.clickElement(genderElement);
 
         //skills
         WebElement skillsElement = driver.findElement(By.id("Skills"));
@@ -84,7 +92,7 @@ public class RegisterTest extends SharedData {
 
         //country
         WebElement countryElement = driver.findElement(By.cssSelector("span[aria-labelledby='select2-country-container']"));
-        countryElement.click();
+        elementMethods.clickElement(countryElement);
 /*
         //parcurgem lista de tari si selectam tara dorita
         List<WebElement> countryElements = driver.findElements(By.xpath("//*[@id='country']/option"));
@@ -112,15 +120,17 @@ public class RegisterTest extends SharedData {
         //parola
         WebElement parolaElement = driver.findElement(By.id("firstpassword"));
         String parolaElementValoare = "parola123";
-        parolaElement.sendKeys(parolaElementValoare);
+        elementMethods.fillElement(parolaElement,parolaElementValoare);
+
 
         //confirmare parola
         WebElement confirmareParolaElement = driver.findElement(By.id("secondpassword"));
         String confirmareParolaElementValoare = "parola123";
-        confirmareParolaElement.sendKeys(confirmareParolaElementValoare);
+        elementMethods.fillElement(confirmareParolaElement,confirmareParolaElementValoare);
+
 
         WebElement languageElement = driver.findElement(By.id("msdd"));
-        languageElement.click();
+        elementMethods.clickElement(languageElement);
 
         List<WebElement> languageElements = driver.findElements(By.xpath("//li[@class='ng-scope']/a"));
         for (Integer i = 0;i < languageElements.size();i++){
@@ -132,7 +142,7 @@ public class RegisterTest extends SharedData {
 
         //click "submit"
         WebElement submitElement = driver.findElement(By.id("submitbtn"));
-        submitElement.click();
+        elementMethods.clickElement(submitElement);
 
 
 
