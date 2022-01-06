@@ -83,8 +83,9 @@ public class RegisterTest extends SharedData {
 
         //skills
         WebElement skillsElement = driver.findElement(By.id("Skills"));
-        Select skillSelect = new Select(skillsElement);
-        skillSelect.selectByVisibleText("Android");
+        elementMethods.selectByTextElement(skillsElement,"Android");
+
+        //dam scroll
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,500)");
 
@@ -104,13 +105,11 @@ public class RegisterTest extends SharedData {
 */
         //anul
         WebElement yearElement = driver.findElement(By.id("yearbox"));
-        Select yearSelect = new Select(yearElement);
-        yearSelect.selectByValue("1970");
+        elementMethods.selectByValueElement(yearElement,"1970");
 
         //luna
         WebElement monthElement = driver.findElement(By.cssSelector("select[placeholder='Month']"));
-        Select monthSelect = new Select(monthElement);
-        monthSelect.selectByValue("May");
+        elementMethods.selectByTextElement(monthElement,"May");
 
         //ziua
         WebElement dayElement = driver.findElement(By.id("daybox"));

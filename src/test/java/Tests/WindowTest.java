@@ -2,6 +2,7 @@ package Tests;
 
 import Base.SharedData;
 import Help.ElementMethods;
+import Help.WindowMethods;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,11 +15,13 @@ import java.util.List;
 
 public class WindowTest extends SharedData {
     public ElementMethods elementMethods;
+    public WindowMethods windowMethods;
 
 
     @Test
     public void testAutomat() {
         elementMethods = new ElementMethods(driver);
+        windowMethods = new WindowMethods(driver);
 
 
         //gasim "skip sign in element"
@@ -27,8 +30,7 @@ public class WindowTest extends SharedData {
 
         //interactionam cu tabul "switch to"
         WebElement switchToElement = driver.findElement(By.xpath("//a[contains(text(),'Switch')]"));
-        Actions action = new Actions(driver);
-        action.moveToElement(switchToElement).perform();
+        elementMethods.hoverElement(switchToElement);
 
         //identificam "Windows"
         WebElement windowsElement = driver.findElement(By.xpath("//a[contains(text(),'Windows')]"));
@@ -48,34 +50,28 @@ public class WindowTest extends SharedData {
 
         //interactionam cu taburile nou deschise
         //salvam taburile intr-o lista noua
-        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
-        System.out.println("titlul paginii" + driver.getTitle());
-        driver.close();
-
-        driver.switchTo().window(tabs.get(0));
+        windowMethods.switchToSpecificWindow(1);
+        windowMethods.closeCurrentWindow();
+        windowMethods.switchToSpecificWindow(0);
 
         windowOptions.get(1).click();
         WebElement clickWindowElement = driver.findElement(By.cssSelector("#Seperate  button"));
         elementMethods.clickElement(clickWindowElement);
 
-        List<String> windows = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(windows.get(1));
-        System.out.println("titlul paginii" + driver.getTitle());
-        driver.close();
-        driver.switchTo().window(windows.get(0));
+        windowMethods.switchToSpecificWindow(1);
+        windowMethods.closeCurrentWindow();
+        windowMethods.switchToSpecificWindow(0);
 
 
         windowOptions.get(2).click();
         WebElement clickTabsElement = driver.findElement(By.cssSelector("#Multiple button"));
         elementMethods.clickElement(clickTabsElement);
 
-        List<String> multipleTabs = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(multipleTabs.get(2));
-        driver.close();
-        driver.switchTo().window(multipleTabs.get(1));
-        driver.close();
-        driver.switchTo().window(multipleTabs.get(0));
+        windowMethods.switchToSpecificWindow(2);
+        windowMethods.closeCurrentWindow();
+        windowMethods.switchToSpecificWindow(1);
+        windowMethods.closeCurrentWindow();
+        windowMethods.switchToSpecificWindow(0);
 
     }
 }

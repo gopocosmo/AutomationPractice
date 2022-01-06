@@ -2,6 +2,7 @@ package Tests;
 
 import Base.SharedData;
 import Help.ElementMethods;
+import Help.FrameMethods;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,10 +14,12 @@ import java.util.List;
 
 public class FrameTest extends SharedData {
     public ElementMethods elementMethods;
+    public FrameMethods frameMethods;
 
     @Test
     public void testAutomat() {
         elementMethods = new ElementMethods(driver);
+        frameMethods = new FrameMethods(driver);
 
         //gasim "skip sign in element"
         WebElement skipSignInElement = driver.findElement(By.id("btn2"));
@@ -37,21 +40,16 @@ public class FrameTest extends SharedData {
         List<WebElement> frameOptions = driver.findElements(By.cssSelector("ul[class='nav nav-tabs '] li a"));
         frameOptions.get(0).click();
         //ne mutam pe un iframe
-        driver.switchTo().frame("singleframe");
+        frameMethods.switchFrameById("singleframe");
         WebElement singleInputElement = driver.findElement(By.xpath("//input[@type='text']"));
         singleInputElement.sendKeys("ceva ce vrei tu;...");
-        driver.switchTo().defaultContent();
+        frameMethods.switchFrameDefault();
 
         frameOptions.get(1).click();
-        driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@src='MultipleFrames.html']")));
-        driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@src='SingleFrame.html']")));
+        frameMethods.switchFrameByElement(driver.findElement(By.xpath("//iframe[@src='MultipleFrames.html']")));
+        frameMethods.switchFrameByElement(driver.findElement(By.xpath("//iframe[@src='SingleFrame.html']")));
         WebElement multipleInputElement = driver.findElement(By.xpath("//input[@type='text']"));
         multipleInputElement.sendKeys("altceva ce vrei tu;...");
-
-        driver.quit();
-
-
-
 
     }
 }

@@ -1,6 +1,7 @@
 package Tests;
 
 import Base.SharedData;
+import Help.AlertMethods;
 import Help.ElementMethods;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
@@ -16,11 +17,12 @@ import java.util.List;
 
 public class AlertTest extends SharedData {
     public ElementMethods elementMethods;
-
+    public AlertMethods alertMethods;
 
     @Test
     public void testAutomat() {
         elementMethods = new ElementMethods(driver);
+        alertMethods = new AlertMethods(driver);
 
 
         //gasim "skip sign in element"
@@ -29,8 +31,7 @@ public class AlertTest extends SharedData {
 
         //interactionam cu tabul "switch to"
         WebElement switchToElement = driver.findElement(By.xpath("//a[contains(text(),'Switch')]"));
-        Actions action = new Actions(driver);
-        action.moveToElement(switchToElement).perform();
+        elementMethods.hoverElement(switchToElement);
 
         //identificam "alerts"
         WebElement alertsElement = driver.findElement(By.xpath("//a[contains(text(),'Alert')]"));
@@ -45,26 +46,19 @@ public class AlertTest extends SharedData {
         WebElement casutaOkButonElement = driver.findElement(By.cssSelector("#OKTab button"));
         elementMethods.clickElement(casutaOkButonElement);
 
-
-        Alert alertOk = driver.switchTo().alert();
-        alertOk.accept();
+        alertMethods.acceptAlert();
 
         alertOptions.get(1).click();
         WebElement casutaOkCancelButonElement = driver.findElement(By.cssSelector("#CancelTab button"));
         elementMethods.clickElement(casutaOkCancelButonElement);
 
-
-        Alert alertOkCancel = driver.switchTo().alert();
-        alertOkCancel.dismiss();
+        alertMethods.cancelAlert();
 
         alertOptions.get(2).click();
         WebElement casutaTextButonElement = driver.findElement(By.cssSelector("#Textbox button"));
         elementMethods.clickElement(casutaTextButonElement);
 
-
-        Alert alertText = driver.switchTo().alert();
-        alertText.sendKeys("sa scriem");
-        alertText.accept();
+        alertMethods.acceptFillAlert("orice vrem sa scriem");
 
     }
 }
