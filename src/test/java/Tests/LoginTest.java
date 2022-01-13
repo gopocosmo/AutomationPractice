@@ -1,20 +1,21 @@
 package Tests;
 
-import Base.SharedData;
+import Base.Hooks;
 import Pages.IndexPage;
 import Pages.LoginPage;
 import org.junit.Test;
 
-public class LoginTest extends SharedData {
+public class LoginTest extends Hooks {
+
     public IndexPage indexPage;
     public LoginPage loginPage;
 
     @Test
     public void testAutomat(){
-        indexPage = new IndexPage(driver);
-        loginPage = new LoginPage(driver);
+        indexPage = new IndexPage(getDriver());
+        loginPage = new LoginPage(getDriver());
 
         indexPage.clickSignIn();
-        loginPage.InvalidLogin("alex","dorha","Invalid User Name or PassWord");
+        loginPage.InvalidLogin(inputData);
     }
 }

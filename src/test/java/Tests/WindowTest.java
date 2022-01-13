@@ -20,33 +20,33 @@ public class WindowTest extends SharedData {
 
     @Test
     public void testAutomat() {
-        elementMethods = new ElementMethods(driver);
-        windowMethods = new WindowMethods(driver);
+        elementMethods = new ElementMethods(getDriver());
+        windowMethods = new WindowMethods(getDriver());
 
 
         //gasim "skip sign in element"
-        WebElement skipSignInElement = driver.findElement(By.id("btn2"));
+        WebElement skipSignInElement = getDriver().findElement(By.id("btn2"));
         elementMethods.clickElement(skipSignInElement);
 
         //interactionam cu tabul "switch to"
-        WebElement switchToElement = driver.findElement(By.xpath("//a[contains(text(),'Switch')]"));
+        WebElement switchToElement = getDriver().findElement(By.xpath("//a[contains(text(),'Switch')]"));
         elementMethods.hoverElement(switchToElement);
 
         //identificam "Windows"
-        WebElement windowsElement = driver.findElement(By.xpath("//a[contains(text(),'Windows')]"));
+        WebElement windowsElement = getDriver().findElement(By.xpath("//a[contains(text(),'Windows')]"));
         elementMethods.clickElement(windowsElement);
 
         String url = "http://demo.automationtesting.in/Windows.html";
-        driver.navigate().to(url);
+        getDriver().navigate().to(url);
         //driver.navigate().refresh();
 
-        List<WebElement> windowOptions = driver.findElements(By.cssSelector("ul[class='nav nav-tabs nav-stacked'] li a"));
+        List<WebElement> windowOptions = getDriver().findElements(By.cssSelector("ul[class='nav nav-tabs nav-stacked'] li a"));
         windowOptions.get(0).click();
-        WebElement clickButonElement = driver.findElement(By.cssSelector("#Tabbed a button"));
+        WebElement clickButonElement = getDriver().findElement(By.cssSelector("#Tabbed a button"));
         elementMethods.clickElement(clickButonElement);
 
 
-        System.out.println("titlul paginii" + driver.getTitle());
+        System.out.println("titlul paginii" + getDriver().getTitle());
 
         //interactionam cu taburile nou deschise
         //salvam taburile intr-o lista noua
@@ -55,7 +55,7 @@ public class WindowTest extends SharedData {
         windowMethods.switchToSpecificWindow(0);
 
         windowOptions.get(1).click();
-        WebElement clickWindowElement = driver.findElement(By.cssSelector("#Seperate  button"));
+        WebElement clickWindowElement = getDriver().findElement(By.cssSelector("#Seperate  button"));
         elementMethods.clickElement(clickWindowElement);
 
         windowMethods.switchToSpecificWindow(1);
@@ -64,7 +64,7 @@ public class WindowTest extends SharedData {
 
 
         windowOptions.get(2).click();
-        WebElement clickTabsElement = driver.findElement(By.cssSelector("#Multiple button"));
+        WebElement clickTabsElement = getDriver().findElement(By.cssSelector("#Multiple button"));
         elementMethods.clickElement(clickTabsElement);
 
         windowMethods.switchToSpecificWindow(2);

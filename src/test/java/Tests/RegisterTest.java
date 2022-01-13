@@ -20,59 +20,59 @@ public class RegisterTest extends SharedData {
 
     @Test
     public void testAutomat() {
-        elementMethods = new ElementMethods(driver);
+        elementMethods = new ElementMethods(getDriver());
 
 
         //gasim "skip sign in element"
-        WebElement skipSignInElement = driver.findElement(By.id("btn2"));
+        WebElement skipSignInElement = getDriver().findElement(By.id("btn2"));
         elementMethods.clickElement(skipSignInElement);
 
         //verificam daca suntem pe pagina care trebuie
         //validare pagina de "Register"
-        String actualRegister = driver.getTitle();
+        String actualRegister = getDriver().getTitle();
         Assert.assertEquals("Register",actualRegister);
 
         //first name
-        WebElement firstNameElement = driver.findElement(By.cssSelector("input[placeholder='First Name']"));
+        WebElement firstNameElement = getDriver().findElement(By.cssSelector("input[placeholder='First Name']"));
         String firstNameElementvaloare = "Augustin";
         elementMethods.fillElement(firstNameElement,firstNameElementvaloare);
 
         //last name
-        WebElement lastNameElement = driver.findElement(By.cssSelector("input[placeholder='Last Name']"));
+        WebElement lastNameElement = getDriver().findElement(By.cssSelector("input[placeholder='Last Name']"));
         String lastNameElementvaloare = "Patron";
         elementMethods.fillElement(lastNameElement,lastNameElementvaloare);
 
         //adresa
-        WebElement adresaElement = driver.findElement(By.cssSelector("textarea[ng-model='Adress']"));
+        WebElement adresaElement = getDriver().findElement(By.cssSelector("textarea[ng-model='Adress']"));
         String adresaElementValoare = "Cluj nr 23";
         elementMethods.fillElement(adresaElement,adresaElementValoare);
 
 
         //incarcam o poza
-        WebElement imageElement = driver.findElement(By.id("imagesrc"));
+        WebElement imageElement = getDriver().findElement(By.id("imagesrc"));
         imageElement.sendKeys("C:\\Users\\Gopo\\Pictures\\1.jpg");
 
 
 
 
         //email
-        WebElement emailElement = driver.findElement(By.cssSelector("input[type='email']"));
+        WebElement emailElement = getDriver().findElement(By.cssSelector("input[type='email']"));
         String emailElementValoare = "ceva@ceva.com";
         elementMethods.fillElement(emailElement,emailElementValoare);
 
 
         //telefon
-        WebElement telElement = driver.findElement(By.cssSelector("input[type='tel']"));
+        WebElement telElement = getDriver().findElement(By.cssSelector("input[type='tel']"));
         String telElementValoare = "0264212666";
         elementMethods.fillElement(telElement,telElementValoare);
 
 
         //gender
-        WebElement genderElement = driver.findElement(By.cssSelector("input[value='Male']"));
+        WebElement genderElement = getDriver().findElement(By.cssSelector("input[value='Male']"));
         elementMethods.clickElement(genderElement);
 
         //hobby
-        WebElement hobbyElement = driver.findElement(By.id("checkbox3"));
+        WebElement hobbyElement = getDriver().findElement(By.id("checkbox3"));
         elementMethods.clickElement(hobbyElement);
 
         //language
@@ -82,17 +82,17 @@ public class RegisterTest extends SharedData {
         elementMethods.clickElement(genderElement);
 
         //skills
-        WebElement skillsElement = driver.findElement(By.id("Skills"));
+        WebElement skillsElement = getDriver().findElement(By.id("Skills"));
         elementMethods.selectByTextElement(skillsElement,"Android");
 
         //dam scroll
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("window.scrollBy(0,500)");
 
 
 
         //country
-        WebElement countryElement = driver.findElement(By.cssSelector("span[aria-labelledby='select2-country-container']"));
+        WebElement countryElement = getDriver().findElement(By.cssSelector("span[aria-labelledby='select2-country-container']"));
         elementMethods.clickElement(countryElement);
 /*
         //parcurgem lista de tari si selectam tara dorita
@@ -104,34 +104,34 @@ public class RegisterTest extends SharedData {
         }
 */
         //anul
-        WebElement yearElement = driver.findElement(By.id("yearbox"));
+        WebElement yearElement = getDriver().findElement(By.id("yearbox"));
         elementMethods.selectByValueElement(yearElement,"1970");
 
         //luna
-        WebElement monthElement = driver.findElement(By.cssSelector("select[placeholder='Month']"));
+        WebElement monthElement = getDriver().findElement(By.cssSelector("select[placeholder='Month']"));
         elementMethods.selectByTextElement(monthElement,"May");
 
         //ziua
-        WebElement dayElement = driver.findElement(By.id("daybox"));
+        WebElement dayElement = getDriver().findElement(By.id("daybox"));
         Select daySelect = new Select(dayElement);
         daySelect.selectByValue("22");
 
         //parola
-        WebElement parolaElement = driver.findElement(By.id("firstpassword"));
+        WebElement parolaElement = getDriver().findElement(By.id("firstpassword"));
         String parolaElementValoare = "parola123";
         elementMethods.fillElement(parolaElement,parolaElementValoare);
 
 
         //confirmare parola
-        WebElement confirmareParolaElement = driver.findElement(By.id("secondpassword"));
+        WebElement confirmareParolaElement = getDriver().findElement(By.id("secondpassword"));
         String confirmareParolaElementValoare = "parola123";
         elementMethods.fillElement(confirmareParolaElement,confirmareParolaElementValoare);
 
 
-        WebElement languageElement = driver.findElement(By.id("msdd"));
+        WebElement languageElement = getDriver().findElement(By.id("msdd"));
         elementMethods.clickElement(languageElement);
 
-        List<WebElement> languageElements = driver.findElements(By.xpath("//li[@class='ng-scope']/a"));
+        List<WebElement> languageElements = getDriver().findElements(By.xpath("//li[@class='ng-scope']/a"));
         for (Integer i = 0;i < languageElements.size();i++){
             if (languageElements.get(i).getText().equals("Bulgarian")){
                 languageElements.get(i).click();
@@ -140,13 +140,13 @@ public class RegisterTest extends SharedData {
         }
 
         //click "submit"
-        WebElement submitElement = driver.findElement(By.id("submitbtn"));
+        WebElement submitElement = getDriver().findElement(By.id("submitbtn"));
         elementMethods.clickElement(submitElement);
 
 
 
         //comparam url-ul curent cu url-ul paginii de register, daca nu s-a schimbat nu a trecut testul
-        String actualRegisterDoi = driver.getTitle();
+        String actualRegisterDoi = getDriver().getTitle();
         String urlPagina = "http://demo.automationtesting.in/Register.html";
         Assert.assertTrue("Testul NU a functionat",urlPagina.contains("Register"));
 

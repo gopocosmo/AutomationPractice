@@ -20,6 +20,8 @@ public class RegisterPage {
     private WebElement switchToelement;
     @FindBy(xpath = "//a[contains(text(),'Frames')]")
     private WebElement frameElement;
+    @FindBy(xpath = "//a[contains(text(),'Alert')]")
+    private WebElement alertElement;
 
 
 
@@ -28,6 +30,14 @@ public class RegisterPage {
         elementMethods.clickElement(frameElement);
         String url = "http://demo.automationtesting.in/Frames.html";
         driver.navigate().to(url);
+    }
+
+    public void goToAlertPage(){
+        elementMethods.hoverElement(switchToelement);
+        elementMethods.clickElement(alertElement);
+        String url = "http://demo.automationtesting.in/Alerts.html";
+        driver.navigate().to(url);
+
     }
 
 
