@@ -10,18 +10,10 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class AlertPage {
-    public WebDriver driver;
-    public ElementMethods elementMethods;
-    public AlertMethods alertMethods;
-
-
+public class AlertPage extends BasePage {
 
     public AlertPage(WebDriver driver){
-        this.driver = driver;
-        elementMethods = new ElementMethods(driver);
-        alertMethods = new AlertMethods(driver);
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(css = "ul[class='nav nav-tabs nav-stacked'] li a")

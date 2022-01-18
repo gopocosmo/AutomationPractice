@@ -2,6 +2,7 @@ package Help;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -16,6 +17,11 @@ public class ElementMethods {
 
     public ElementMethods(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public void scrollByPixel(Integer x, Integer y){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy("+x+","+y+")");
     }
 
     public void clickElement(WebElement element){

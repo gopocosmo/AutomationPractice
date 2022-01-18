@@ -10,16 +10,10 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class FramePage {
-    public WebDriver driver;
-    public ElementMethods elementMethods;
-    public FrameMethods frameMethods;
+public class FramePage extends BasePage {
 
     public FramePage(WebDriver driver){
-        this.driver = driver;
-        elementMethods = new ElementMethods(driver);
-        frameMethods = new FrameMethods(driver);
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(css = "ul[class='nav nav-tabs '] li a")

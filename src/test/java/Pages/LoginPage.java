@@ -8,16 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.HashMap;
 
-public class LoginPage {
-
-    public WebDriver driver;
-    public ElementMethods elementMethods;
-
+public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver){
-        this.driver = driver;
-        elementMethods = new ElementMethods(driver);
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(css = "input[placeholder='E mail']")

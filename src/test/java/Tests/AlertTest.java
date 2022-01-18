@@ -1,16 +1,10 @@
 package Tests;
 
 import Base.Hooks;
-import Help.AlertMethods;
-import Help.ElementMethods;
 import Pages.AlertPage;
 import Pages.IndexPage;
 import Pages.RegisterPage;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class AlertTest extends Hooks {
     public IndexPage indexPage;
