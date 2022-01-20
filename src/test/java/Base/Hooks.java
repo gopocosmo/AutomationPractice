@@ -23,6 +23,6 @@ public class Hooks extends SharedData{
 
     @After
     public void cleanEnvironment(){
-       // quitBrowser();
+        quitBrowser();
     }
 }
