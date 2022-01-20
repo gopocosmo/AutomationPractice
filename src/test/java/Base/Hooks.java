@@ -1,5 +1,6 @@
 package Base;
 
+import ExtentUtility.ExtentReportTest;
 import PropertyUtility.PropertyFile;
 import org.junit.After;
 import org.junit.Before;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 public class Hooks extends SharedData{
 
     public HashMap<String, String> inputData;
+    public ExtentReportTest report;
 
     @Before
     public void prepareEnvironment(){
@@ -19,10 +21,13 @@ public class Hooks extends SharedData{
         PropertyFile testData = new PropertyFile("TestData/"+testName+"Resource");
         //pun toate valorile din fisier intr-un hashmap
         inputData = testData.getAllValues();
+        report = new ExtentReportTest(testName);
     }
 
     @After
     public void cleanEnvironment(){
         quitBrowser();
+        report.generateReport();
     }
+
 }
