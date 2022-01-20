@@ -19,5 +19,6 @@ public class RegisterTest extends Hooks {
 
         indexPage.clickSkipSignIn();
         registerPage.validRegisterProcess(inputData);
+
     }
 }

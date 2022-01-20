@@ -1,13 +1,8 @@
 package Pages;
 
-import Help.ElementMethods;
-import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
 import java.util.HashMap;
 import java.util.List;
@@ -51,6 +46,8 @@ public class RegisterPage extends BasePage {
     private WebElement skillsElement;
     @FindBy(css = "span[aria-labelledby='select2-country-container']")
     private WebElement countryElement;
+    @FindBy(xpath = "//*[@id='country']/option")
+    private List<WebElement> countryElements;
     @FindBy(id = "yearbox")
     private WebElement yearElement;
     @FindBy(css = "select[placeholder='Month']")
@@ -99,6 +96,17 @@ public class RegisterPage extends BasePage {
         clickHobby(values.get("hobby"));
         sendPicture(values.get("picture"));
         chooseLanguage(values.get("language"));
+        selectSkills(values.get("skills"));
+        //clickCountry("country");
+        //selectCountry("country");
+        elementMethods.scrollByPixel(0,500);
+        //elementMethods.clickElement(emailElement);
+        //selectYear("year");
+        //selectMonth("month");
+        //selectDay("day");
+        inputPassword("password");
+        confirmPassword("confirmPassword");
+
     }
 
     public void fillFirstName(String value){
@@ -165,6 +173,48 @@ public class RegisterPage extends BasePage {
                 break;
             }
         }
+    }
+
+    public void selectSkills(String value){
+        elementMethods.selectByTextElement(skillsElement,value);
+    }
+
+    public void selectCountry(String value){
+        elementMethods.clickElement(countryElement);
+        for (Integer i = 0;i < countryElements.size();i++){
+                if (countryElements.get(i).getText().equals(value)){
+                    countryElements.get(i).click();
+                }
+            }
+    }
+
+    public void clickCountry(String value){
+        elementMethods.clickElement(countryElement);
+        elementMethods.selectByTextElement(countryElement,value);
+    }
+
+    public void selectYear(String value){
+        elementMethods.selectByTextElement(yearElement,value);
+    }
+
+    public void selectMonth(String value){
+        elementMethods.selectByValueElement(monthElement,value);
+    }
+
+    public void selectDay(String value){
+        elementMethods.selectByValueElement(dayElement,value);
+    }
+
+    public void inputPassword(String value){
+        elementMethods.fillElement(parolaElement,value);
+    }
+
+    public void confirmPassword(String value){
+        elementMethods.fillElement(confirmareParolaElement,value);
+    }
+
+    public void clickSubmit(){
+        elementMethods.clickElement(submitElement);
     }
 
 //    /language
